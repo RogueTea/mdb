@@ -11,11 +11,11 @@ jobs:
     - name: Checkout dev hub repository
       uses: actions/checkout@v2
 
-    - name: Clone repository 1
-      run: git clone --depth 1 https://github.com/RogueTea/swgt repo1
+    - name: Clone repository 1 (sgwt)
+      run: git clone --depth 1 --branch gh-pages https://github.com/user/sgwt.git repo1
 
-    - name: Clone repository 2
-      run: git clone --depth 1 https://github.com/RogueTea/swgt2 repo2
+    - name: Clone repository 2 (swgt2)
+      run: git clone --depth 1 --branch gh-pages https://github.com/user/swgt2.git repo2
 
     - name: Create target directories
       run: |
@@ -23,10 +23,10 @@ jobs:
         mkdir -p docs/repo2
 
     - name: Copy API docs from repo1
-      run: cp -r repo1/docs/* docs/repo1/
+      run: cp repo1/index.html docs/repo1/
 
     - name: Copy API docs from repo2
-      run: cp -r repo2/docs/* docs/repo2/
+      run: cp repo2/index.html docs/repo2/
 
     - name: List aggregated files
       run: ls -R docs
