@@ -17,6 +17,11 @@ jobs:
     - name: Clone repository 2
       run: git clone --depth 1 https://github.com/RogueTea/swgt2 repo2
 
+    - name: Create target directories
+      run: |
+        mkdir -p docs/repo1
+        mkdir -p docs/repo2
+
     - name: Copy API docs from repo1
       run: cp -r repo1/docs/* docs/repo1/
 
