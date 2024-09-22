@@ -10,3 +10,24 @@ jobs:
     steps:
     - name: Checkout dev hub repository
       uses: actions/checkout@v2
+
+    - name: Clone repository 1
+      run: git clone --depth 1 https://github.com/RogueTea/swgt repo1
+
+    - name: Clone repository 2
+      run: git clone --depth 1 https://github.com/RogueTea/swgt2 repo2
+
+    - name: Copy API docs from repo1
+      run: cp -r repo1/docs/* docs/repo1/
+
+    - name: Copy API docs from repo2
+      run: cp -r repo2/docs/* docs/repo2/
+
+    - name: List aggregated files
+      run: ls -R docs
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.GH_PAT }}
+        publish_dir: ./docs
